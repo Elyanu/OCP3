@@ -4,8 +4,6 @@ parameters:
     database_name: ocprojet3
     database_user: root
     database_password: MPYanislaV77/
-    mailer_transport: smtp
-    mailer_host: smtp.gmail.com
     mailer_user: jego.yann@gmail.com
     mailer_password: MPYanislaV77/
     secret: 53d3aea459ea20d702452b1cd4a55d47f8eb8041
