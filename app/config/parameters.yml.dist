@@ -4,8 +4,12 @@ parameters:
     database_name: ocprojet3
     database_user: root
     database_password: MPYanislaV77/
-    mailer_user: jego.yann@gmail.com
+    mailer_transport: smtp
+    mailer_host: smtp.gmail.com
+    mailer_user: jego.yann
     mailer_password: MPYanislaV77/
+    mailer_port: 465
+    mailer_encryption:  ssl 
     secret: 53d3aea459ea20d702452b1cd4a55d47f8eb8041
     stripe_secret_key: sk_test_rSgX5koKDk4OjAtiYyq4QsKA
     stripe_public_key: pk_test_kmJs0DJB7WANGxpCT4DlXSxn
