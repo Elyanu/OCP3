@@ -59,7 +59,7 @@
                 rightArrow: '<i class="fa fa-chevron-right"></i>'
             }
         }).on("change", function(){
-            $.places({
+            $.ajax({
                 url: "{{ path('places_dispo') }}",
                 data: 'day='+($('.datepicker').val()),
                 success: function(data) {
