@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-touch-icon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}" />
+
+    <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
+    {% block stylesheets %}
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/material-bootstrap-wizard.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker2.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {% endblock %}
+</head>
+<body>
+{% for msg in app.session.flashBag.get('success') %}
+    <div class="alert alert-success text-center alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ msg }}
+    </div>
+{% endfor %}
+
+{% for msg in app.session.flashBag.get('error') %}
+    <div class="alert alert-danger">{{ msg }}</div>
+{% endfor %}
+<div class="image-container set-full-height" style="background-image: url({{ asset('assets/img/louvre.jpg') }})">
+    {% block nav %}
+    <div class="container-fluid text-center">
+        <button type="button" class="btn btn-primary btn-lg pull-left" data-toggle="modal" data-target="#horaires">
+            Horaires
+        </button>
+        <a id="home" class="btn btn-primary" href="{{ path('index') }}"><i class="fa fa-home fa-6" aria-hidden="true"></i>&nbsp;</a>
+        <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#tarifs">
+            Tarifs
+        </button>
+    </div>
+    {% endblock %}
+    <!-- Modal horaires -->
+    <div class="modal fade" id="horaires" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="wizard-title text-center" id="myModalLabel">LES HORAIRES</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <P>Le musée est ouvert tous les jours sauf le mardi, de 9h00 à 18h00.</P>
+                    <p>Le musée est fermé les 1er mai, 1er novembre et 25 décembre.</p>
+                </div>
+                <div class="modal-header">
+                    <h4 class="wizard-title text-center">RÉSERVATION</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Les dimanches et jours fériés ne sont pas ouverts à la réservation.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal tarifs -->
+    <div class="modal fade" id="tarifs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="wizard-title text-center" id="myModalLabel">LES TARIFS</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Tarifs journée</h4>
+                    <p>Entrée gratuite : enfants de moins de 4 ans.</p>
+                    <p>Tarif enfant : 8 euros (de 4 à 11 ans).</p>
+                    <p>Tarif normal : 16 euros (de 12 à 59 ans).</p>
+                    <p>Tarif senoir : 12 euros (à partir de 60 ans).</p>
+                    <p>Tarif réduit : 10 euros (étudiant, employé du musée, d’un service du ministère de la Culture, militaire, demandeur d'emploi, sur présentation d'un justificatif).</p>
+                    <br>
+                    <h4>Tarifs demi-journée</h4>
+                    <p>Le billet demi-journée permet de rentrer à partir de 14h en bénéficiant d'une réduction de 50% sur le prix de base.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Big container   -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <!--      Wizard container        -->
+                <div class="wizard-container">
+                    <div class="card wizard-card" data-color="red" id="wizard">
+                        <div class="wizard-header">
+                            {% block header %}
+                            <h3 class="wizard-title">
+                                Réservation
+                            </h3>
+                            <h5>Suivez les étapes et réglez&nbsp;!</h5>
+                            {% endblock %}
+                        </div>
+                    {% block body %}{% endblock %}
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+        </div> <!-- row -->
+    </div> <!--  big container -->
+    <div class="footer">
+        <div class="container text-center">
+            © 2016 – Yann Jego
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+<script src="{{ asset('assets/js/jquery-2.2.4.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.bootstrap.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.validate.js') }}"></script>
+<script src="{{ asset('assets/js/material-bootstrap-wizard.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datepicker2.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datepicker.fr.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>

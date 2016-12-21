@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/opt/lampp/htdocs/OCProjet3/web/assets/css/main.css</file>
+            <file>file:/opt/lampp/htdocs/OCProjet3/app/Resources/views/reservation/index.html.twig</file>
+            <file>file:/opt/lampp/htdocs/OCProjet3/app/Resources/views/base.html.twig</file>
+            <file>file:/opt/lampp/htdocs/OCProjet3/app/config/config.yml</file>
+            <file>file:/opt/lampp/htdocs/OCProjet3/src/AppBundle/Form/IndexType.php</file>
+            <file>file:/opt/lampp/htdocs/OCProjet3/src/AppBundle/Controller/ReservationController.php</file>
+            <file>file:/opt/lampp/htdocs/OCProjet3/web/assets/css/bootstrap.css</file>
+        </group>
+    </open-files>
+</project-private>
