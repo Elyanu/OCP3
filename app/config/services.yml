@@ -1,0 +1,16 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    tarif_gratuit: 0
+    tarif_enfant: 8
+    tarif_reduit: 10
+    tarif_normal: 16
+    tarif_senior: 12
+
+services:
+    reservation.service:
+        class: AppBundle\Services\ReservationService
+        arguments: ["@doctrine.orm.default_entity_manager", "%tarif_gratuit%", "%tarif_enfant%", "%tarif_reduit%", "%tarif_normal%", "%tarif_senior%"]
+    stripe.service:
+        class: AppBundle\Services\StripeService
+        arguments: ["%stripe_secret_key%"]

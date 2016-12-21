@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block nav %}
+    <div class="container-fluid text-center home-nav">
+        <a id="home" class="btn btn-danger hidden-xs" href="{{ path('index') }}"><i class="fa fa-home fa-6" aria-hidden="true"></i>&nbsp;</a>
+    </div>
+{% endblock %}
+{% block header %}
+    <div class="home">
+        <h3 class="wizard-title">ERREUR 409</h3>
+        <h5>Il n'y a plus suffisamment de places disponibles pour le jour choisi, nous ne pouvons traiter votre commande.</h5>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="text-center">
+        <a href="{{ path('index') }}" class="btn btn-danger btn-lg" >Retourner à l'accueil</a>
+    </div>
+{% endblock %}

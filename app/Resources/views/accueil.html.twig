@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <div class="home">
+        <h3>
+            Bienvenue sur la billetterie du musée du Louvre.
+        </h3>
+        <h5>Réservez vos billets en ligne</h5>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="text-center">
+        <a href="{{ path('billetterie') }}" class="btn btn-default btn-lg">Billetterie</a>
+    </div>
+    <div class="text-center">
+        <div class="text-center stripe">
+            <a href="https://stripe.com/fr" target="_blank"><img id="logo-stripe" src="{{ asset('assets/img/stripe.png') }}" alt="logo-stripe"></a>
+            <p>Paiement sécurisé</p>
+        </div>
+    </div>
+{% endblock %}
+

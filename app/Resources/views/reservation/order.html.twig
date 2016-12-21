@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="tab-content">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h4 class="text-center">Renseignez les informations pour chaque visiteur</h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="controls">
+                    {{ form_start(form) }}
+                        <ul class="visitors" data-prototype="{{ form_widget(form.visitors.vars.prototype)|e('html_attr') }}"></ul>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('assets/js/formCollection.js') }}"></script>
+<script>
+    $("[name=commande]").validate({
+        rules: {
+            "commande[visitors][0][prenom]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][0][nomf]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][1][prenom]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][1][nomf]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][2][prenom]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][2][nomf]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][3][prenom]": {
+                required: true,
+                minlength: 2
+            },
+            "commande[visitors][3][nomf]": {
+                required: true,
+                minlength: 2
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-touch-icon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}" />
+
+    <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
+    {% block stylesheets %}
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/material-bootstrap-wizard.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker2.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    {% endblock %}
+</head>
+<body>
+
+{% block nav %}
+<header class="navbar navbar-inverse navbar-fixed-top navbar-fluid">
+    <div class="container-fluid text-center">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <img src={{ asset('assets/img/logo-louvre.jpg') }} alt="">
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ path('index') }}">ACCUEIL</a></li>
+                        <li><a data-toggle="modal" data-target="#myModalHoraires" href="#myModalHoraires">HORAIRES</i></a></li>
+                        <li><a data-toggle="modal" data-target="#myModalTarifs" href="#myModalTarifs">TARIFS</i></a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+    </div> 
+</header>
+{% endblock %}
+{% for msg in app.session.flashBag.get('success') %}
+    <div class="alert alert-success text-center alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ msg }}
+    </div>
+{% endfor %}
+
+{% for msg in app.session.flashBag.get('error') %}
+    <div class="alert alert-danger">{{ msg }}</div>
+{% endfor %}
+
+    <div class="image-container set-full-height" style="background-image: url({{ asset('assets/img/louvre.jpg') }})">
+    
+        <div>
+            <br>
+        </div>
+
+    <!--   Big container   -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="jumbotron">
+                    <div class="container text-center">
+                        <div>
+                            {% block header %}
+                            <h3>
+                                Réservation
+                            </h3>
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="container">
+                    {% block body %}{% endblock %}
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+        </div> <!-- row -->
+    </div> <!--  big container -->
+    <div class="footer">
+        <div class="container text-center">
+            © 2016 – LagunaWeb
+        </div>
+    </div>
+</div>
+                    
+    <!-- MODAL FOR HORAIRES -->
+	<!-- Modal -->
+	<div class="modal fade" id="myModalHoraires" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="text-center" id="myModalLabel">LES HORAIRES</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Ouverture de 9h00 à 18h00</p>
+                    <p>Fermeture les mardi, les 1er mai, 1er novembre et 25 décembre.</p>
+                </div>
+                <div class="modal-header">
+                    <h4 class="text-center">RÉSERVATION</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Il n'est pas possible de réserver pour les dimanches, les jours fériés et les dates pour lesquelles plus de 1000 billets ont été vendus</p>
+                </div>
+		<div id="mapwrap">
+		<iframe height="300" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10499.496405115677!2d2.337644!3d48.8606111!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb975fcfa192f84d4!2sMus%C3%A9e+du+Louvre!5e0!3m2!1sfr!2sfr!4v1482219261661"></iframe>
+		</div>	
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- MODAL FOR TARIFS -->
+	<!-- Modal -->
+	<div class="modal fade" id="myModalTarifs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="text-center" id="myModalLabel">LES TARIFS</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Tarifs journée</h4><br>
+                    <p>Tarif normal : 16 €</p>
+                    <p>Enfants de moins de 4 ans : entrée gratuite</p>
+                    <p>Enfants jusqu'à 11 ans : tarif enfant, 8€</p>
+                    <p>Sénior, à partir de 60 ans : tarif sénior, 12 €</p>
+                    <p>Etudiants, militaires, demandeurs d'emploi, employés du musée ou d'un service du ministère de la culture: Tarif réduit : 10 € (sur présentation d'un justificatif)</p>
+                    <br>
+                    <h4>Tarifs demi-journée</h4>
+                    <p>Pour une entrée à partir de 14h, le billet demi-journée vous fait bénéficier d'une réduction de 50% sur votre tarif.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+	  </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->                    
+                    
+                    
+                    
+{% block javascripts %}
+<script src="{{ asset('assets/js/jquery-2.2.4.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.bootstrap.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.validate.js') }}"></script>
+<script src="{{ asset('assets/js/material-bootstrap-wizard.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datepicker2.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datepicker.fr.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>

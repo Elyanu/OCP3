@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="tab-content">
+    <div class="row">
+        <h5>Récapitulatif de votre commande</h5>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="col-xs-3 active text-center">Date</th>
+                <th class="col-xs-5 active text-center">Billet</th>
+                <th class="col-xs-2 active text-center">Tarif</th>
+                <th class="col-xs-2 active text-center">Supprimer ?</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%  for billet in billets %}
+            <tr>
+                <th class="col-xs-3 text-center">{{ visite|date("d/m/Y") }}</th>
+                <td class="col-xs-5 text-center">{{ billet.prenom }} {{ billet.nomf }}</td>
+                <td class="col-xs-2 text-center">{{ billet.prix|number_format }} €</td>
+                <td class="col-xs-2 text-center"><a href="{{ path('remove', {'billetId': billet.id, 'id': id }) }}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th class="col-xs-3 info">&nbsp;</th>
+                <td class="col-xs-5 info text-center">Total</td>
+                <td class="col-xs-2 info text-center"><strong>{{ montant|number_format }} €</strong></td>
+                <td class="col-xs-2 info text-center">&nbsp;</td>
+            </tr>
+            </tfoot>
+        </table>
+        <h5>La commande sera envoyée à l'adresse e-mail suivante : {{ email }}</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="text-center">
+        <div class="alert alert-danger {{ error ? '' : 'hidden' }}">{{ error }}</div>
+    </div>
+</div>
+<div>
+    <div class="pull-right">
+        <form action="" method="POST">
+            <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ stripe_public_key }}"
+                    data-amount="{{ montant * 100 }}"
+                    data-name="Billetterie du Louvre"
+                    data-description="Paiement sécurisé"
+                    data-image="{{ asset('assets/img/apple-touch-icon.png') }}"
+                    data-locale="auto"
+                    data-email="{{ email }}"
+                    data-label="Régler la commande"
+                    data-zip-code="false"
+                    data-allow-remember-me="false"
+                    data-currency="eur">
+            </script>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(".stripe-button-el").addClass("btn btn-default").removeClass("stripe-button-el");
+        $("button span").css("min-height", "");
+    </script>
+{% endblock %}
