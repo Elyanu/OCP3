@@ -8,11 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AjaxController extends Controller
+class PlacesController extends Controller
 {
     /**
      * @param Request $request
-     * @Route("/ajax", name="ajax_dispo")
+     * @Route("/places", name="places_dispo")
      * @Method("GET")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -23,6 +23,6 @@ class AjaxController extends Controller
         if ($request->isXmlHttpRequest()) {
             return new Response(1000-$tickets);
         }
-        return new Response('This is not ajax!', 400);
+        return new Response('Problème!', 400);
     }
 }

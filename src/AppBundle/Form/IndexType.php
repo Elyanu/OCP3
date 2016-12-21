@@ -26,7 +26,7 @@ class IndexType extends AbstractType
             ->add('dureeVisite', ChoiceType::class, [
                 'choices'  => [
                     'Journée' => 'full',
-                    'Demi-journée' => 'half'
+                    'Demi-journée (après 14h)' => 'half'
                 ],
                 'label'  => 'Type de billet'
             ])

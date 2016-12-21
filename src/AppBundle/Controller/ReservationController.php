@@ -31,7 +31,7 @@ class ReservationController extends Controller
             $data = $form->getData();
             $commande = $this->get('reservation.service')->createCommande($session, $data['day'], $data['dureeVisite'], $data['email']);
             if ($commande) {
-                return $this->redirectToRoute('order', array(
+                return $this->redirectToRoute('commande', array(
                     'id' => $commande->getId(),
                 ));
             }
@@ -49,12 +49,12 @@ class ReservationController extends Controller
     /**
      * @param Request $request
      * @param $id
-     * @Route("/order/{id}", name="order")
+     * @Route("/commande/{id}", name="commande")
      * @Method({"GET", "POST"})
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      */
-    public function orderAction(Request $request, $id)
+    public function commandeAction(Request $request, $id)
     {
         if ($this->get('reservation.service')->getSession($id) === $request->cookies->get('ocprojet3'))
         {
@@ -70,7 +70,7 @@ class ReservationController extends Controller
                     'id' => $id
                 ));
             }
-            return $this->render('reservation/order.html.twig', array(
+            return $this->render('reservation/commande.html.twig', array(
                 'form' => $form->createView(),
             ));
         }

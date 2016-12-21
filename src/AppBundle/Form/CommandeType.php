@@ -26,8 +26,8 @@ class CommandeType extends AbstractType
                 'by_reference' => false
             ])
             ->add('montant', HiddenType::class)
-            ->add('Valider', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary btn-lg']
+            ->add('Valider votre commande', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary']
             ])
         ;
     }
